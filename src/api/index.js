@@ -6,6 +6,14 @@ async function getFromAPI(tail) {
   return data;
 }
 
+const transformCharacterListData = (rawData) =>
+  rawData.map((character) => ({
+    id: character.char_id,
+    name: character.name,
+    image: character.img,
+    isDead: character.status === DEAD,
+  }));
+
 export async function getCharacterData(id) {
   const data = await getFromAPI(`${CHARACTER_URL}/${id}`);
   const characterData = data[0];
@@ -21,20 +29,23 @@ export async function getCharacterCount(category) {
   return data.length;
 }
 
-export async function getCharacterListOffset(category, offset = 0) {
+export async function getCharacterListOffset(category, page = 1) {
+  // first page - 1 equal to offset - 0
+  const offsetPage = page <= 1 ? 0 : page - 1;
   const data = await getFromAPI(
     `${CHARACTER_URL}?category=${category.replaceAll(
       ' ',
       '+'
-    )}&limit=${LIMIT}&offset=${offset}`
+    )}&limit=${LIMIT}&offset=${offsetPage * LIMIT}`
   );
 
-  const characterList = data.map((character) => ({
-    id: character.char_id,
-    name: character.name,
-    image: character.img,
-    isDead: character.status === DEAD,
-  }));
+  return transformCharacterListData(data);
+}
 
-  return characterList;
+export async function findCharacterByName(category, searchString) {
+  const data = await getFromAPI(
+    `${CHARACTER_URL}?name=${searchString.toLowerCase().replaceAll(' ', '+')}`
+  );
+
+  return transformCharacterListData(data);
 }
