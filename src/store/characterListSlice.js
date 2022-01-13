@@ -21,7 +21,7 @@ const initialState = {
 export const loadCharacterList = createAsyncThunk(
   `${name}/loadCharacterList`,
   async (category, page) => {
-    const data = getCharacterListOffset(category, page);
+    const data = await getCharacterListOffset(category, page);
     return data;
   }
 );
@@ -29,7 +29,7 @@ export const loadCharacterList = createAsyncThunk(
 export const loadCharacterCount = createAsyncThunk(
   `${name}/loadCharacterCount`,
   async (category) => {
-    const data = getCharacterCount(category);
+    const data = await getCharacterCount(category);
     return data;
   }
 );
@@ -37,7 +37,7 @@ export const loadCharacterCount = createAsyncThunk(
 export const loadCharacterByName = createAsyncThunk(
   `${name}/loadCharacterByName`,
   async (category, searchString) => {
-    const data = findCharacterByName(category, searchString);
+    const data = await findCharacterByName(category, searchString);
     return data;
   }
 );

@@ -6,6 +6,13 @@ async function getFromAPI(tail) {
   return data;
 }
 
+async function getCharacterList(category) {
+  const result = await getFromAPI(
+    `${CHARACTER_URL}?category=${category.replaceAll(' ', '+')}`
+  );
+  return result;
+}
+
 const transformCharacterListData = (rawData) =>
   rawData.map((character) => ({
     id: character.char_id,
@@ -23,10 +30,17 @@ export async function getCharacterData(id) {
 }
 
 export async function getCharacterCount(category) {
-  const data = await getFromAPI(
-    `${CHARACTER_URL}?category=${category.replaceAll(' ', '+')}`
-  );
+  const data = await getCharacterList(category);
   return data.length;
+}
+
+export async function getCharactersGalleryData(category) {
+  const rawData = await getCharacterList(category);
+  const characterData = rawData.map((character) => {
+    const { id, img, name } = character;
+    return { id, img, name };
+  });
+  return characterData;
 }
 
 export async function getCharacterListOffset(category, page = 1) {

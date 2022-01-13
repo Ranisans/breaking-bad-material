@@ -13,7 +13,7 @@ const initialState = {
 export const loadCharacterData = createAsyncThunk(
   `${name}/loadCharacterData`,
   async (id) => {
-    const data = getCharacterData(id);
+    const data = await getCharacterData(id);
     return data;
   }
 );
