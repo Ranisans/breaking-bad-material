@@ -10,6 +10,7 @@ import {
 } from './store/characterListSlice';
 import { loadCharactersGallery } from './store/charactersGallerySlice';
 import useStyles from './appStyles';
+import CharacterPage from './components/CharcterPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ function App() {
             <Route
               exact
               path="/character/:characterId"
-              element={<div>Character Page</div>}
+              element={<CharacterPage />}
             />
             <Route exact path="/gallery" element={<GalleryPage />} />
             <Route path="*" element={<Navigate to="/" />} />

@@ -1,4 +1,4 @@
-import { API_URL, CHARACTER_URL, LIMIT, DEAD } from '../constants/api';
+import { API_URL, CHARACTER_URL, LIMIT, ALIVE } from '../constants/api';
 
 async function getFromAPI(tail) {
   const response = await fetch(`${API_URL}${tail}`);
@@ -18,13 +18,13 @@ const transformCharacterListData = (rawData) =>
     id: character.char_id,
     name: character.name,
     image: character.img,
-    isDead: character.status === DEAD,
+    isDead: character.status !== ALIVE,
   }));
 
 export async function getCharacterData(id) {
   const data = await getFromAPI(`${CHARACTER_URL}/${id}`);
   const characterData = data[0];
-  characterData.isDead = characterData.status === DEAD;
+  characterData.isDead = characterData.status !== ALIVE;
 
   return characterData;
 }
@@ -37,7 +37,7 @@ export async function getCharacterCount(category) {
 export async function getCharactersGalleryData(category) {
   const rawData = await getCharacterList(category);
   const characterData = rawData.map((character) => {
-    const { id, img, name } = character;
+    const { char_id: id, img, name } = character;
     return { id, img, name };
   });
   return characterData;

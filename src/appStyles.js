@@ -9,7 +9,7 @@ const useStyles = makeStyles({
   },
   secondRow: {
     position: 'relative',
-    overflowY: 'scroll',
+    overflowY: 'auto',
   },
 });
 
