@@ -51,9 +51,12 @@ export default function Navbar() {
           <Button component={Link} to="/" variant="contained">
             home
           </Button>
+          <Button component={Link} to="/gallery" variant="contained">
+            gallery
+          </Button>
         </ButtonGroup>
       </Drawer>
-      <Box height={74}>
+      <Box className={classes.box}>
         <AppBar position="fixed">
           <Toolbar className={classes.toolBar}>
             <IconButton
@@ -75,6 +78,9 @@ export default function Navbar() {
             >
               <Button component={Link} to="/">
                 Home
+              </Button>
+              <Button component={Link} to="/gallery">
+                gallery
               </Button>
             </ButtonGroup>
             <Stack direction="row" spacing={1} className={classes.sliderBlock}>

@@ -4,7 +4,12 @@ const useStyles = makeStyles({
   root: {
     flexGrow: 1,
     width: '100%',
+  },
+  box: {
     height: 74,
+    '@media (max-width: 620px)': {
+      height: 56,
+    },
   },
   header: {
     width: 145,
@@ -14,20 +19,26 @@ const useStyles = makeStyles({
   },
   drawerButton: {
     '&.MuiButtonBase-root': {
-      '@media (min-width: 600px)': {
+      '@media (min-width: 620px)': {
         display: 'none',
       },
     },
   },
   buttonMenu: {
     '&.MuiButtonGroup-root': {
-      '@media (max-width: 600px)': {
+      '@media (max-width: 620px)': {
         display: 'none',
       },
     },
   },
   toolBar: {
     justifyContent: 'space-between',
+    '&.MuiToolbar-root': {
+      '@media (max-width: 620px)': {
+        height: 56,
+        minHeight: 56,
+      },
+    },
   },
   image: {
     height: 42,
