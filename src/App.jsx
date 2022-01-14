@@ -7,7 +7,7 @@ import Navbar from './components/Navbar';
 import { loadCharacterCount } from './store/characterListSlice';
 import { loadCharactersGallery } from './store/charactersGallerySlice';
 import useStyles from './appStyles';
-import CharacterPage from './components/CharcterPage';
+import CharacterPage from './components/CharacterPage';
 import TablePage from './components/TablePage';
 
 function App() {
