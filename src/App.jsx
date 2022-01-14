@@ -9,6 +9,7 @@ import { loadCharactersGallery } from './store/charactersGallerySlice';
 import useStyles from './appStyles';
 import CharacterPage from './components/CharacterPage';
 import TablePage from './components/TablePage';
+import SearchPage from './components/SearchPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -36,6 +37,7 @@ function App() {
             />
             <Route exact path="/gallery" element={<GalleryPage />} />
             <Route exact path="/table" element={<TablePage />} />
+            <Route exact path="/search" element={<SearchPage />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </div>

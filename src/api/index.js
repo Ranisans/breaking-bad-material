@@ -13,14 +13,6 @@ async function getCharacterList(category) {
   return result;
 }
 
-const transformCharacterListData = (rawData) =>
-  rawData.map((character) => ({
-    id: character.char_id,
-    name: character.name,
-    image: character.img,
-    isDead: character.status !== ALIVE,
-  }));
-
 export async function getCharacterData(id) {
   const data = await getFromAPI(`${CHARACTER_URL}/${id}`);
   const characterData = data[0];
@@ -55,10 +47,10 @@ export async function getCharacterListOffset(category, page = 1) {
   return data;
 }
 
-export async function findCharacterByName(category, searchString) {
+export async function findCharacterByName(searchString) {
   const data = await getFromAPI(
     `${CHARACTER_URL}?name=${searchString.toLowerCase().replaceAll(' ', '+')}`
   );
 
-  return transformCharacterListData(data);
+  return data;
 }

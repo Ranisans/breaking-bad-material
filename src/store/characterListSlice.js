@@ -1,11 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-import {
-  getCharacterCount,
-  getCharacterListOffset,
-  findCharacterByName,
-} from '../api';
+import { getCharacterCount, getCharacterListOffset } from '../api';
 import * as status from '../constants/thunkStatus';
 import { LIMIT } from '../constants/api';
 
@@ -30,14 +26,6 @@ export const loadCharacterCount = createAsyncThunk(
   `${name}/loadCharacterCount`,
   async (category) => {
     const data = await getCharacterCount(category);
-    return data;
-  }
-);
-
-export const loadCharacterByName = createAsyncThunk(
-  `${name}/loadCharacterByName`,
-  async ({ category, searchString }) => {
-    const data = await findCharacterByName(category, searchString);
     return data;
   }
 );
@@ -72,17 +60,6 @@ export const characterListSlice = createSlice({
         state.status = status.SUCCEEDED;
       })
       .addCase(loadCharacterList.rejected, (state) => {
-        state.status = status.FAILED;
-      })
-      .addCase(loadCharacterByName.pending, (state) => {
-        state.status = status.LOADING;
-        state.characterList = [];
-      })
-      .addCase(loadCharacterByName.fulfilled, (state, action) => {
-        state.characterList = action.payload;
-        state.status = status.SUCCEEDED;
-      })
-      .addCase(loadCharacterByName.rejected, (state) => {
         state.status = status.FAILED;
       });
   },
