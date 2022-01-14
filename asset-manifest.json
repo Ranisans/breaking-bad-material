@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/breaking-bad-material/static/css/main.20a2458f.css",
-    "main.js": "/breaking-bad-material/static/js/main.33b33b07.js",
+    "main.js": "/breaking-bad-material/static/js/main.3e76be3b.js",
     "static/js/787.230d66ba.chunk.js": "/breaking-bad-material/static/js/787.230d66ba.chunk.js",
     "static/media/breaking-bad-logo.svg": "/breaking-bad-material/static/media/breaking-bad-logo.cb72e5f70b8f692e04f4cc3af72d1b5a.svg",
     "index.html": "/breaking-bad-material/index.html",
     "main.20a2458f.css.map": "/breaking-bad-material/static/css/main.20a2458f.css.map",
-    "main.33b33b07.js.map": "/breaking-bad-material/static/js/main.33b33b07.js.map",
+    "main.3e76be3b.js.map": "/breaking-bad-material/static/js/main.3e76be3b.js.map",
     "787.230d66ba.chunk.js.map": "/breaking-bad-material/static/js/787.230d66ba.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.20a2458f.css",
-    "static/js/main.33b33b07.js"
+    "static/js/main.3e76be3b.js"
   ]
 }
