@@ -44,8 +44,7 @@ export async function getCharactersGalleryData(category) {
 }
 
 export async function getCharacterListOffset(category, page = 1) {
-  // first page - 1 equal to offset - 0
-  const offsetPage = page <= 1 ? 0 : page - 1;
+  const offsetPage = page <= 0 ? 0 : page;
   const data = await getFromAPI(
     `${CHARACTER_URL}?category=${category.replaceAll(
       ' ',
@@ -53,7 +52,7 @@ export async function getCharacterListOffset(category, page = 1) {
     )}&limit=${LIMIT}&offset=${offsetPage * LIMIT}`
   );
 
-  return transformCharacterListData(data);
+  return data;
 }
 
 export async function findCharacterByName(category, searchString) {

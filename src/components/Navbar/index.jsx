@@ -17,7 +17,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { CATEGORY } from '../../constants/api';
 import useStyles from './styles';
-import { setCategory } from '../../store/characterListSlice';
+import { setCategory } from '../../store/categorySlice';
 
 import bbLogo from '../../assets/breaking-bad-logo.svg';
 import bcsLogo from '../../assets/better-call-saul-logo.png';
@@ -34,7 +34,7 @@ export default function Navbar() {
     dispatch(setCategory(e.target.checked));
   };
 
-  const characterListState = useSelector((state) => state.characterList);
+  const categoryState = useSelector((state) => state.category);
 
   const classes = useStyles();
 
@@ -54,6 +54,9 @@ export default function Navbar() {
           <Button component={Link} to="/gallery" variant="contained">
             gallery
           </Button>
+          <Button component={Link} to="/table" variant="contained">
+            table
+          </Button>
         </ButtonGroup>
       </Drawer>
       <Box className={classes.box}>
@@ -69,7 +72,7 @@ export default function Navbar() {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap className={classes.header}>
-              {characterListState.category}
+              {categoryState.category}
             </Typography>
             <ButtonGroup
               variant="contained"
@@ -82,13 +85,16 @@ export default function Navbar() {
               <Button component={Link} to="/gallery">
                 gallery
               </Button>
+              <Button component={Link} to="/table">
+                table
+              </Button>
             </ButtonGroup>
             <Stack direction="row" spacing={1} className={classes.sliderBlock}>
               <img src={bbLogo} alt="B/B" className={classes.image} />
               <Switch
                 size="medium"
                 color="secondary"
-                checked={characterListState.category === CATEGORY[1]}
+                checked={categoryState.category === CATEGORY[1]}
                 onChange={sliderHandler}
               />
               <img src={bcsLogo} alt="BCS" className={classes.image} />

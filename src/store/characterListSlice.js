@@ -7,20 +7,20 @@ import {
   findCharacterByName,
 } from '../api';
 import * as status from '../constants/thunkStatus';
-import { CATEGORY, LIMIT } from '../constants/api';
+import { LIMIT } from '../constants/api';
 
 const name = 'characterList';
 const initialState = {
-  category: CATEGORY[0],
   pageCount: 0,
-  page: 1,
+  page: 0,
+  numberOfCharacters: 0,
   characterList: [],
   status: status.IDLE,
 };
 
 export const loadCharacterList = createAsyncThunk(
   `${name}/loadCharacterList`,
-  async (category, page) => {
+  async ({ category, page }) => {
     const data = await getCharacterListOffset(category, page);
     return data;
   }
@@ -36,7 +36,7 @@ export const loadCharacterCount = createAsyncThunk(
 
 export const loadCharacterByName = createAsyncThunk(
   `${name}/loadCharacterByName`,
-  async (category, searchString) => {
+  async ({ category, searchString }) => {
     const data = await findCharacterByName(category, searchString);
     return data;
   }
@@ -46,19 +46,8 @@ export const characterListSlice = createSlice({
   name,
   initialState,
   reducers: {
-    setCategory(state, action) {
-      state.category = action.payload ? CATEGORY[1] : CATEGORY[0];
-      state.status = status.IDLE;
-    },
-    nextPage(state) {
-      if (state.page < state.pageCount - 1) {
-        state.page += 1;
-      }
-    },
-    previousPage(state) {
-      if (state.page > 2) {
-        state.page -= 1;
-      }
+    setPage(state, action) {
+      state.page = action.payload;
     },
   },
   extraReducers(builder) {
@@ -68,6 +57,7 @@ export const characterListSlice = createSlice({
         state.characterList = [];
       })
       .addCase(loadCharacterCount.fulfilled, (state, action) => {
+        state.numberOfCharacters = action.payload;
         state.pageCount = Math.ceil(action.payload / LIMIT);
       })
       .addCase(loadCharacterCount.rejected, (state) => {
@@ -98,5 +88,5 @@ export const characterListSlice = createSlice({
   },
 });
 
-export const { setCategory } = characterListSlice.actions;
+export const { setPage } = characterListSlice.actions;
 export default characterListSlice.reducer;
