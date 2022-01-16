@@ -10,6 +10,7 @@ import useStyles from './appStyles';
 import CharacterPage from './components/CharacterPage';
 import TablePage from './components/TablePage';
 import SearchPage from './components/SearchPage';
+import MainPage from './components/MainPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ function App() {
         <Navbar />
         <div className={classes.secondRow}>
           <Routes>
-            <Route exact path="/" element={<div>Main </div>} />
+            <Route exact path="/" element={<MainPage />} />
             <Route
               exact
               path="/character/:characterId"
