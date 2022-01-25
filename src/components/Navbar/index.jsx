@@ -57,9 +57,6 @@ export default function Navbar() {
           <Button component={Link} to="/table" variant="contained">
             table
           </Button>
-          <Button component={Link} to="/search" variant="contained">
-            search
-          </Button>
         </ButtonGroup>
       </Drawer>
       <Box className={classes.box}>
@@ -90,9 +87,6 @@ export default function Navbar() {
               </Button>
               <Button component={Link} to="/table">
                 table
-              </Button>
-              <Button component={Link} to="/search">
-                search
               </Button>
             </ButtonGroup>
             <Stack direction="row" spacing={1} className={classes.sliderBlock}>

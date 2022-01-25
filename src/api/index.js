@@ -48,9 +48,13 @@ export async function getCharacterListOffset(category, page = 1) {
 }
 
 export async function findCharacterByName(searchString) {
-  const data = await getFromAPI(
+  const rawData = await getFromAPI(
     `${CHARACTER_URL}?name=${searchString.toLowerCase().replaceAll(' ', '+')}`
   );
+  const characterData = rawData.map((character) => {
+    const { char_id: id, img, name } = character;
+    return { id, img, name };
+  });
 
-  return data;
+  return characterData;
 }

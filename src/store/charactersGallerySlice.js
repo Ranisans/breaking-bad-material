@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { getCharactersGalleryData } from '../api';
+import { getCharactersGalleryData, findCharacterByName } from '../api';
 import * as status from '../constants/thunkStatus';
 
 const name = 'charactersGallery';
@@ -12,8 +12,14 @@ const initialState = {
 
 export const loadCharactersGallery = createAsyncThunk(
   `${name}/loadCharactersGallery`,
-  async (category) => {
-    const data = await getCharactersGalleryData(category);
+  async (searchString, thunkAPI) => {
+    const state = thunkAPI.getState();
+    let data;
+    if (searchString === undefined || searchString === '') {
+      const { category } = state.category;
+      data = getCharactersGalleryData(category);
+    } else data = findCharacterByName(searchString);
+    data = await data;
     return data;
   }
 );

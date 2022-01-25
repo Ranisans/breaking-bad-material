@@ -2,6 +2,12 @@ import { makeStyles } from '@mui/styles';
 import { alpha } from '@mui/material/styles';
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    overflow: 'hidden',
+  },
   searchRow: {
     display: 'flex',
     justifyContent: 'flex-end',
@@ -44,6 +50,11 @@ const useStyles = makeStyles((theme) => ({
         },
       },
     },
+  },
+  contentBox: {
+    height: '100%',
+    position: 'relative',
+    overflowY: 'auto',
   },
 }));
 

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Navigate, Route, BrowserRouter, Routes } from 'react-router-dom';
+import { Navigate, Route, HashRouter, Routes } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import GalleryPage from './components/GalleryPage';
@@ -9,7 +9,6 @@ import { loadCharactersGallery } from './store/charactersGallerySlice';
 import useStyles from './appStyles';
 import CharacterPage from './components/CharacterPage';
 import TablePage from './components/TablePage';
-import SearchPage from './components/SearchPage';
 import MainPage from './components/MainPage';
 
 function App() {
@@ -19,13 +18,13 @@ function App() {
   useEffect(() => {
     const { category } = categoryState;
     dispatch(loadCharacterCount(category));
-    dispatch(loadCharactersGallery(category));
+    dispatch(loadCharactersGallery());
   }, [categoryState.category]);
 
   const classes = useStyles();
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div className={classes.root}>
         <Navbar />
         <div className={classes.secondRow}>
@@ -38,12 +37,11 @@ function App() {
             />
             <Route exact path="/gallery" element={<GalleryPage />} />
             <Route exact path="/table" element={<TablePage />} />
-            <Route exact path="/search" element={<SearchPage />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </div>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

@@ -17,6 +17,8 @@ const useStyles = makeStyles({
   },
   img: {
     height: 400,
+    width: 300,
+    objectFit: 'cover',
   },
   ribbon: {
     position: 'absolute',

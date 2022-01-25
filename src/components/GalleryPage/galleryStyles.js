@@ -20,8 +20,11 @@ const useStyles = makeStyles({
   },
   image: {
     height: 400,
+    width: 300,
+    objectFit: 'cover',
     '@media (max-width: 620px)': {
       height: 600,
+      width: 400,
     },
   },
   title: {
