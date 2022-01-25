@@ -29,8 +29,8 @@ export async function getCharacterCount(category) {
 export async function getCharactersGalleryData(category) {
   const rawData = await getCharacterList(category);
   const characterData = rawData.map((character) => {
-    const { char_id: id, img, name } = character;
-    return { id, img, name };
+    const { char_id: id, img, name, status } = character;
+    return { id, img, name, isDead: status !== ALIVE };
   });
   return characterData;
 }
@@ -52,8 +52,8 @@ export async function findCharacterByName(searchString) {
     `${CHARACTER_URL}?name=${searchString.toLowerCase().replaceAll(' ', '+')}`
   );
   const characterData = rawData.map((character) => {
-    const { char_id: id, img, name } = character;
-    return { id, img, name };
+    const { char_id: id, img, name, status } = character;
+    return { id, img, name, isDead: status !== ALIVE };
   });
 
   return characterData;

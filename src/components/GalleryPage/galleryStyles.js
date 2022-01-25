@@ -14,7 +14,15 @@ const useStyles = makeStyles({
     overflow: 'hidden',
     backgroundColor: '#ddcece',
     alignItems: 'center',
-    '@media (max-width: 620px)': {
+    '@media (max-width: 620px) and (min-width: 400px)': {
+      width: 400,
+    },
+  },
+  imgBox: {
+    height: 400,
+    width: 300,
+    '@media (max-width: 620px) and (min-width: 400px)': {
+      height: 600,
       width: 400,
     },
   },
@@ -22,10 +30,22 @@ const useStyles = makeStyles({
     height: 400,
     width: 300,
     objectFit: 'cover',
-    '@media (max-width: 620px)': {
+    '@media (max-width: 620px) and (min-width: 400px)': {
       height: 600,
       width: 400,
     },
+  },
+  ribbon: {
+    position: 'absolute',
+    backgroundColor: 'black',
+    height: '2rem',
+    lineHeight: '2rem',
+    width: 170,
+    color: 'white',
+    bottom: 30,
+    right: -40,
+    textAlign: 'center',
+    transform: 'rotate(-45deg)',
   },
   title: {
     textAlign: 'center',
